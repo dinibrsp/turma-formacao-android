@@ -1,6 +1,7 @@
 package br.com.cast.turmaformacao.taskmanager.Util;
 
 import android.widget.EditText;
+import android.widget.Spinner;
 
 /**
  * Created by Administrador on 15/09/2015.
@@ -23,5 +24,6 @@ public final class FormHelper {
         }
         return hasRequired;
     }
+
 
 }

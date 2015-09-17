@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Task Manager</string>
+    <string name="app_name">Color</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -35,4 +35,6 @@
 
     <string name="lbl_yes">Yes</string>
     <string name="lbl_no">No</string>
+
+
 </resources>

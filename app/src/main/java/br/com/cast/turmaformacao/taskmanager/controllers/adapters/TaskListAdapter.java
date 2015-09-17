@@ -10,6 +10,8 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.R;
+import br.com.cast.turmaformacao.taskmanager.controllers.activities.TaskFormActivity;
+import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Task;
 
 public class TaskListAdapter extends BaseAdapter {
@@ -21,6 +23,7 @@ public class TaskListAdapter extends BaseAdapter {
         this.context = context;
         this.taskList = taskList;
     }
+
 
     public void setDataValues(List<Task> values){
         taskList.clear();

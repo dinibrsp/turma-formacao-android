@@ -6,11 +6,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.Util.FormHelper;
+import br.com.cast.turmaformacao.taskmanager.controllers.adapters.TaskListAdapter;
+import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Task;
+import br.com.cast.turmaformacao.taskmanager.model.services.LabelBusinessService;
 import br.com.cast.turmaformacao.taskmanager.model.services.TaskBusinessService;
 
 public class TaskFormActivity extends AppCompatActivity {
@@ -48,7 +54,7 @@ public class TaskFormActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String required = TaskFormActivity.this.getString(R.string.lbl_required);
-                if(!FormHelper.validateRequired(required, editTextName, editTextDescription)){
+                if (!FormHelper.validateRequired(required, editTextName, editTextDescription)) {
                     binTask();
                     TaskBusinessService.save(task);
                     Toast.makeText(TaskFormActivity.this, R.string.lbl_saved, Toast.LENGTH_SHORT).show();
@@ -72,5 +78,7 @@ public class TaskFormActivity extends AppCompatActivity {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextName.setText(task.getName() == null ? "" : task.getName());
     }
+
+
 
 }
