@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Color;
 
 
@@ -38,6 +39,9 @@ public class ColorListAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        return null;
+        View view = context.getLayoutInflater().inflate(R.layout.list_item_color, parent, false);
+        int hexColor = android.graphics.Color.parseColor(getItem(position).getHex());
+        view.findViewById(R.id.viewColor).setBackgroundColor(hexColor);
+        return view;
     }
 }

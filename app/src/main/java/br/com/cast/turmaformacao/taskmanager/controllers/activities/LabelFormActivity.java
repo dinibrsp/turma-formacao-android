@@ -59,7 +59,6 @@ public class LabelFormActivity extends AppCompatActivity {
 
     public void bindSpinnerColor() {
         spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
-        //spinnerColor.setAdapter(new ColorListAdapter(LabelFormActivity.this));
     }
 
     private void onMenuSaveClick() {
@@ -89,6 +88,7 @@ public class LabelFormActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
 
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_save, menu);
@@ -120,6 +120,10 @@ public class LabelFormActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
+
 
 
 }
