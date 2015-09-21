@@ -56,6 +56,11 @@ public class TaskListAdapter extends BaseAdapter {
         TextView textViewName = (TextView)taskListItemView.findViewById(R.id.textViewName);
         textViewName.setText(task.getName());
 
+        if (task.getLabel().getColor() != null) {
+        TextView textViewColor = (TextView) taskListItemView.findViewById(R.id.textColor);
+        textViewColor.setText(task.getLabel().getColor().getHex());
+        }
+
         return taskListItemView;
     }
 }

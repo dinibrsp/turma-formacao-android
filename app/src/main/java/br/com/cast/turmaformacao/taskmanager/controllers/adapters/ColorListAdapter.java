@@ -5,17 +5,18 @@ import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-
+import android.widget.TextView;
+import android.util.Log;
 import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Color;
 
 
 public class ColorListAdapter extends BaseAdapter{
 
-    private Context context;
+    private Activity context;
     private Color[] colors;
 
-    public ColorListAdapter(Activity activity){
+    public ColorListAdapter(Activity activity, Color[] colors){
         super();
         this.context = activity;
         this.colors = colors;
@@ -28,7 +29,7 @@ public class ColorListAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
+    public Color getItem(int position) {
         return this.colors[position];
     }
 

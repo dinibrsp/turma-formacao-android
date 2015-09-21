@@ -12,12 +12,12 @@ import java.util.List;
 import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
 
-public class LabelListAdapter extends BaseAdapter {
+public class SpinnerListAdapter extends BaseAdapter {
 
     private List<Label> labelList;
     private Activity context;
 
-    public LabelListAdapter(Activity context, List<Label> labelList) {
+    public SpinnerListAdapter(Activity context, List<Label> labelList) {
         this.context = context;
         this.labelList = labelList;
     }
@@ -46,20 +46,13 @@ public class LabelListAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         Label label = getItem(position);
-        View labelListItemView = context.getLayoutInflater().inflate(R.layout.list_item_label, parent, false);
+        View labelListItemView = context.getLayoutInflater().inflate(R.layout.spinner_item_label, parent, false);
 
-        TextView textViewId = (TextView) labelListItemView.findViewById(R.id.textViewId);
-        textViewId.setText(label.getId().toString());
 
         TextView textViewName = (TextView) labelListItemView.findViewById(R.id.textViewName);
         textViewName.setText(label.getName());
 
-        TextView textViewDescription = (TextView) labelListItemView.findViewById(R.id.textViewDescription);
-        textViewDescription.setText(label.getDescription());
-
         if (label.getColor() != null) {
-            TextView textViewColor = (TextView) labelListItemView.findViewById(R.id.textViewColor);
-            textViewColor.setText(label.getColor().getHex());
 
             int hexColor = android.graphics.Color.parseColor(label.getColor().getHex());
             labelListItemView.findViewById(R.id.layoutId).setBackgroundColor(hexColor);

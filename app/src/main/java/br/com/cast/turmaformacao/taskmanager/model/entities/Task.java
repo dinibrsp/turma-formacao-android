@@ -9,8 +9,11 @@ import java.io.Serializable;
 public class Task implements Parcelable {
 
     private Long id;
+    private Long labelId;
     private String name;
     private String description;
+    private Label label;
+
 
     public Long getId() {
         return id;
@@ -19,12 +22,6 @@ public class Task implements Parcelable {
     public Task(){
         super();
     }
-
-    public Task(Parcel imp){
-        super();
-        readFromParcel(imp);
-    }
-
 
     public void setId(Long id) {
         this.id = id;
@@ -46,6 +43,14 @@ public class Task implements Parcelable {
         this.description = description;
     }
 
+    public Label getLabel() {
+        return label;
+    }
+
+    public void setLabel(Label label) {
+        this.label = label;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,7 +60,9 @@ public class Task implements Parcelable {
 
         if (id != null ? !id.equals(task.id) : task.id != null) return false;
         if (name != null ? !name.equals(task.name) : task.name != null) return false;
-        return !(description != null ? !description.equals(task.description) : task.description != null);
+        if (description != null ? !description.equals(task.description) : task.description != null)
+            return false;
+        return !(label != null ? !label.equals(task.label) : task.label != null);
 
     }
 
@@ -64,6 +71,7 @@ public class Task implements Parcelable {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (label != null ? label.hashCode() : 0);
         return result;
     }
 
@@ -73,8 +81,10 @@ public class Task implements Parcelable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", label=" + label +
                 '}';
     }
+
 
     @Override
     public int describeContents() {
@@ -83,32 +93,26 @@ public class Task implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeLong(id == null ? -1 : id);
+        dest.writeValue(id == null ? -1 : id);
         dest.writeString(name == null ? "" : name);
         dest.writeString(description == null ? "" : description);
+        dest.writeParcelable(this.label, 0);
     }
 
-    public void readFromParcel(Parcel imp){
-        id = imp.readLong();
-        id = imp.readLong() == -1 ? null : id;
-
-        name = imp.readString();
-        description = imp.readString();
+    protected Task(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.name = in.readString();
+        this.description = in.readString();
+        this.label = in.readParcelable(Label.class.getClassLoader());
     }
 
-    public static final Parcelable.Creator<Task> CREATOR = new Parcelable.Creator<Task>() {
-
-        @Override
+    public static final Creator<Task> CREATOR = new Creator<Task>() {
         public Task createFromParcel(Parcel source) {
             return new Task(source);
         }
 
-        @Override
         public Task[] newArray(int size) {
             return new Task[size];
         }
     };
-
-
-
 }

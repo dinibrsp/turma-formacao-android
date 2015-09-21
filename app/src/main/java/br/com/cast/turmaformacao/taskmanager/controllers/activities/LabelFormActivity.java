@@ -33,6 +33,8 @@ public class LabelFormActivity extends AppCompatActivity {
     private Label label;
     private ListView listViewLabelList;
     private Label selectedLabel;
+    private ListView listColorView;
+    private Color colorSelect;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +45,14 @@ public class LabelFormActivity extends AppCompatActivity {
         bindEditTextDescription();
         bindSpinnerColor();
         bindLabelList();
+        bindListColorView();
     }
+
+    private void bindListColorView(){
+        listColorView = (ListView) findViewById(R.id.listViewLabelList);
+    }
+
+
 
     private void initLabel() {
         this.label = new Label();
@@ -59,6 +68,11 @@ public class LabelFormActivity extends AppCompatActivity {
 
     public void bindSpinnerColor() {
         spinnerColor = (Spinner) findViewById(R.id.spinnerColor);
+        Color[] list = Color.values();
+
+        ColorListAdapter colorAdapter = new ColorListAdapter(LabelFormActivity.this, list);
+
+        spinnerColor.setAdapter(colorAdapter);
     }
 
     private void onMenuSaveClick() {
@@ -69,6 +83,7 @@ public class LabelFormActivity extends AppCompatActivity {
             List<Label> all = LabelBusinessService.findAll();
             Toast.makeText(LabelFormActivity.this, R.string.lbl_saved, Toast.LENGTH_SHORT).show();
             updateLabelList();
+            finish();
             //Toast.makeText(LabelFormActivity.this, all.toString(), Toast.LENGTH_SHORT).show();
         }
     }
@@ -76,7 +91,8 @@ public class LabelFormActivity extends AppCompatActivity {
     private void binLabel() {
         label.setName(editTextName.getText().toString());
         label.setDescription(editTextDescription.getText().toString());
-        label.setColor(Color.BLACK);
+        colorSelect = (Color) spinnerColor.getSelectedItem();
+        label.setColor(colorSelect);
     }
 
     @Override
@@ -111,6 +127,7 @@ public class LabelFormActivity extends AppCompatActivity {
         listViewLabelList = (ListView) findViewById(R.id.listViewLabelList);
         registerForContextMenu(listViewLabelList);
         listViewLabelList.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
 
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {

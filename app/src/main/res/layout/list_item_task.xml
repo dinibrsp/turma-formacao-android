@@ -17,7 +17,15 @@
         android:id="@+id/textViewName"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="8"
+        android:layout_weight="4"
+        android:gravity="center"
+        android:text="Implementar adapter"/>
+
+    <TextView
+        android:id="@+id/textColor"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="4"
         android:gravity="center"
         android:text="Implementar adapter"/>
 
