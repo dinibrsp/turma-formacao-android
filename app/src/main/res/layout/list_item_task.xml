@@ -6,13 +6,11 @@
 
     <TextView
         android:background="@drawable/frame"
-        android:paddingLeft="25dp"
-        android:paddingBottom="5dp"
         android:id="@+id/textViewId"
         android:layout_width="10dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1.7"
-        android:gravity="start|center"
+        android:layout_height="30dp"
+        android:layout_weight="0.5"
+        android:gravity="center"
         android:text=""/>
 
 
