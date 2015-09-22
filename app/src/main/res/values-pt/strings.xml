@@ -7,6 +7,7 @@
     <string name="lbl_login">Usuário</string>
     <string name="lbl_password">Senha</string>
     <string name="lbl_enter">Entrar</string>
+    <string name="lbl_create">Criar Conta</string>
 
     <string name="lbl_altura">Altura</string>
     <string name="lbl_peso">Peso</string>
@@ -23,6 +24,7 @@
 
     <string name="lbl_required">Campo obrigatório!</string>
     <string name="lbl_saved">Salvo!</string>
+    <string name="lbl_created">Criado!</string>
 
     <string name="lbl_edit">Editar</string>
     <string name="lbl_delete">Deletar</string>

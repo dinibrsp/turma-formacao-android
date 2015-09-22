@@ -18,10 +18,22 @@
         android:hint="@string/lbl_password"
         android:layout_height="wrap_content"/>
 
-    <Button
-        android:id="@+id/buttonLogin"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/lbl_enter"/>
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/buttonCreate"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="@string/lbl_create"/>
+        <Button
+            android:id="@+id/buttonLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:text="@string/lbl_enter"/>
+    </LinearLayout>
 
 </LinearLayout>

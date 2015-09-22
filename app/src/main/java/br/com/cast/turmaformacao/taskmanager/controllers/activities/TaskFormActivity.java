@@ -2,6 +2,8 @@ package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
 
 import android.content.Intent;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.OvalShape;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -65,6 +67,7 @@ public class TaskFormActivity extends AppCompatActivity {
     }
 
     public void bindSpinnerLabels() {
+
         spinnerLabels = (Spinner) findViewById(R.id.spinnerLabels);
         registerForContextMenu(spinnerLabels);
         spinnerLabels.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
