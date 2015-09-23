@@ -17,6 +17,51 @@
         android:layout_height="62dp"
         android:password="true"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="62dp"
+        android:orientation="horizontal">
+
+        <EditText
+            android:hint="CEP"
+            android:id="@+id/editTextCep"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="8" />
+        <Button
+            android:id="@+id/buttonCheckCep"
+            android:layout_width="0dp"
+            android:layout_height="62dp"
+            android:layout_weight="2"
+            android:text="Check"/>
+    </LinearLayout>
+
+    <EditText
+        android:hint="Tipo de Logadouro"
+        android:id="@+id/editTextTipoDeLogradouro"
+        android:layout_width="match_parent"
+        android:layout_height="62dp" />
+    <EditText
+        android:hint="Logadouro"
+        android:id="@+id/editTextLogradouro"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"/>
+    <EditText
+        android:hint="Bairro"
+        android:id="@+id/editTextBairro"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"/>
+    <EditText
+        android:hint="Cidade"
+        android:id="@+id/editTextCidade"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"/>
+    <EditText
+        android:hint="Estado"
+        android:id="@+id/editTextEstado"
+        android:layout_width="match_parent"
+        android:layout_height="62dp"/>
+
     <Button
         android:id="@+id/buttonAdd"
         android:layout_width="match_parent"

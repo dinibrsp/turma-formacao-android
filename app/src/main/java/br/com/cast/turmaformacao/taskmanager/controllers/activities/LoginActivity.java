@@ -1,6 +1,7 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -15,7 +16,10 @@ import java.util.List;
 import br.com.cast.turmaformacao.taskmanager.R;
 import br.com.cast.turmaformacao.taskmanager.Util.FormHelper;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Account;
+import br.com.cast.turmaformacao.taskmanager.model.entities.Address;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
+import br.com.cast.turmaformacao.taskmanager.model.http.AddressService;
+import br.com.cast.turmaformacao.taskmanager.model.http.AddressService;
 import br.com.cast.turmaformacao.taskmanager.model.persistence.AccountReposiroty;
 import br.com.cast.turmaformacao.taskmanager.model.services.LabelBusinessService;
 
@@ -35,7 +39,29 @@ public class LoginActivity extends AppCompatActivity {
         bindEditTextPassword();
         bindButtonCreate();
 
+        //new GetAddressTask().execute("14801460");
     }
+
+    /*private class GetAddressTask extends AsyncTask<String, Void, Address>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Address doInBackground(String... params) {
+            return AddressService.getAddressByCep(params[0]);
+        }
+
+        @Override
+        protected void onPostExecute(Address address) {
+
+            super.onPostExecute(address);
+        }
+    }*/
+
+
     private void bindButtonCreate() {
         buttonCreate = (Button) findViewById(R.id.buttonCreate);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
