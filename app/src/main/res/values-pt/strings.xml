@@ -5,9 +5,11 @@
     <string name="action_settings">Configurações</string>
 
     <string name="lbl_login">Usuário</string>
+    <string name="menu_login">Login</string>
     <string name="lbl_password">Senha</string>
     <string name="lbl_enter">Entrar</string>
     <string name="lbl_create">Criar Conta</string>
+    <string name="failmsg">Usuário ou senha inválidos!</string>
 
     <string name="lbl_altura">Altura</string>
     <string name="lbl_peso">Peso</string>
@@ -19,6 +21,7 @@
     <string name="lbl_name">Nome</string>
     <string name="lbl_description">Descrição</string>
     <string name="lbl_save">Salvar</string>
+    <string name="button_editLabel">Editar Label</string>
 
     <string name="lbl_add">Adicionar</string>
 

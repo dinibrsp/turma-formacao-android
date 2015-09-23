@@ -1,5 +1,7 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -87,6 +89,7 @@ public class LabelFormActivity extends AppCompatActivity {
             //Toast.makeText(LabelFormActivity.this, all.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+
 
     private void binLabel() {
         label.setName(editTextName.getText().toString());

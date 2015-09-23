@@ -27,7 +27,7 @@
             android:layout_weight="2">
         </Spinner>
         <Button
-            android:text="Add Label"
+            android:text="@string/button_editLabel"
             android:id="@+id/addLabel"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

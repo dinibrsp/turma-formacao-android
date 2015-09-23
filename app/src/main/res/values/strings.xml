@@ -21,11 +21,14 @@
     <string name="lbl_description">Description</string>
     <string name="lbl_save">Save</string>
 
+    <string name="button_editLabel">Edit Label</string>
     <string name="lbl_add">Add</string>
 
     <string name="lbl_required">Field required!</string>
     <string name="lbl_saved">Saved!</string>
     <string name="lbl_created">Created!</string>
+    <string name="menu_login">Login</string>
+    <string name="failmsg">Invalid user or password!</string>
 
     <string name="lbl_edit">Edit</string>
     <string name="lbl_delete">Delete</string>
