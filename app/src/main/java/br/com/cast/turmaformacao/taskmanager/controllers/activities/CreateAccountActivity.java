@@ -57,6 +57,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         bindEditTextEstado();
         bindButtonCheckCep();
 
+
     }
 
     private void initAccount() {
@@ -79,6 +80,7 @@ public class CreateAccountActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Address address) {
             super.onPostExecute(address);
+            editTextCidade.setText(address.getCity().toString());
         }
     }
 
