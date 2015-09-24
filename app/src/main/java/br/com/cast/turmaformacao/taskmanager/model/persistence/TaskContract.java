@@ -14,11 +14,12 @@ public final class TaskContract {
 
     public static final String TABLE = "task";
     public static final String ID = "id";
+    public static final String _ID = "_id";
     public static final String NAME = "name";
     public static final String DESCRIPTION = "description";
     public static final String LABELID = "label_id";
 
-    public static final String[] COLUNS = {ID, NAME, DESCRIPTION, LABELID};
+    public static final String[] COLUNS = {ID, _ID, NAME, DESCRIPTION, LABELID};
 
 
     private TaskContract() {
@@ -31,9 +32,10 @@ public final class TaskContract {
         create.append(" CREATE TABLE " + TABLE);
         create.append(" ( ");
         create.append(ID + " INTEGER PRIMARY KEY, ");
+        create.append(_ID + " TEXT, ");
         create.append(NAME + " TEXT NOT NULL, ");
         create.append(DESCRIPTION + " TEXT, ");
-        create.append(LABELID + " INTEGER NOT NULL ");
+        create.append(LABELID + " INTEGER ");
         create.append(" ); ");
 
         return create.toString();
@@ -42,9 +44,10 @@ public final class TaskContract {
     public static ContentValues getContentValues(Task task) {
         ContentValues values = new ContentValues();
         values.put(TaskContract.ID, task.getId());
+        values.put(TaskContract._ID, task.get_id());
         values.put(TaskContract.NAME, task.getName());
         values.put(TaskContract.DESCRIPTION, task.getDescription());
-        values.put(TaskContract.LABELID, task.getLabel().getId());
+        values.put(TaskContract.LABELID, 1L);
         return values;
     }
 
@@ -52,6 +55,7 @@ public final class TaskContract {
         Task task = new Task();
         if (!cursor.isBeforeFirst() || cursor.moveToNext()) {
             task.setId(cursor.getLong(cursor.getColumnIndex(TaskContract.ID)));
+            task.set_id(cursor.getString(cursor.getColumnIndex(TaskContract._ID)));
             task.setName(cursor.getString(cursor.getColumnIndex(TaskContract.NAME)));
             task.setDescription(cursor.getString(cursor.getColumnIndex(TaskContract.DESCRIPTION)));
 

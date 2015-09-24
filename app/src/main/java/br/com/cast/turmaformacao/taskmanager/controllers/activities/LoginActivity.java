@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         bindEditTextPassword();
         bindButtonCreate();
 
-        //new GetAddressTask().execute("14801460");
     }
 
     /*private class GetAddressTask extends AsyncTask<String, Void, Address>{

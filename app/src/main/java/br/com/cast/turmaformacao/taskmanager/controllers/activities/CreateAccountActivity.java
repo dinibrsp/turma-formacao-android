@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.List;
@@ -57,7 +58,6 @@ public class CreateAccountActivity extends AppCompatActivity {
         bindEditTextEstado();
         bindButtonCheckCep();
 
-
     }
 
     private void initAccount() {
@@ -80,7 +80,11 @@ public class CreateAccountActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Address address) {
             super.onPostExecute(address);
+            editTextTipoDeLogradouro.setText(address.getType().toString());
+            editTextLogradouro.setText(address.getStreet().toString());
+            editTextBairro.setText(address.getNeighborhood().toString());
             editTextCidade.setText(address.getCity().toString());
+            editTextEstado.setText(address.getState().toString());
         }
     }
 

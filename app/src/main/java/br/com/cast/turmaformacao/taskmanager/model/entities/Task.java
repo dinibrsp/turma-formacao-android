@@ -9,11 +9,19 @@ import java.io.Serializable;
 public class Task implements Parcelable {
 
     private Long id;
-    private Long labelId;
+    private String _id;
     private String name;
     private String description;
     private Label label;
 
+
+    public String get_id() {
+        return _id;
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
+    }
 
     public Long getId() {
         return id;
@@ -59,6 +67,7 @@ public class Task implements Parcelable {
         Task task = (Task) o;
 
         if (id != null ? !id.equals(task.id) : task.id != null) return false;
+        if (_id != null ? !_id.equals(task._id) : task._id != null) return false;
         if (name != null ? !name.equals(task.name) : task.name != null) return false;
         if (description != null ? !description.equals(task.description) : task.description != null)
             return false;
@@ -69,6 +78,7 @@ public class Task implements Parcelable {
     @Override
     public int hashCode() {
         int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (_id != null ? _id.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (label != null ? label.hashCode() : 0);
@@ -79,12 +89,12 @@ public class Task implements Parcelable {
     public String toString() {
         return "Task{" +
                 "id=" + id +
+                ", _id='" + _id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", label=" + label +
                 '}';
     }
-
 
     @Override
     public int describeContents() {
@@ -94,13 +104,15 @@ public class Task implements Parcelable {
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeValue(id == null ? -1 : id);
+        dest.writeString(_id == null ? "" : _id);
         dest.writeString(name == null ? "" : name);
         dest.writeString(description == null ? "" : description);
-        dest.writeParcelable(this.label, 0);
+        dest.writeParcelable(label, 0);
     }
 
     protected Task(Parcel in) {
         this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this._id = in.readString();
         this.name = in.readString();
         this.description = in.readString();
         this.label = in.readParcelable(Label.class.getClassLoader());

@@ -4,6 +4,7 @@ package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 import android.content.Intent;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -27,6 +28,7 @@ import br.com.cast.turmaformacao.taskmanager.controllers.adapters.TaskListAdapte
 import br.com.cast.turmaformacao.taskmanager.model.entities.Color;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Task;
+import br.com.cast.turmaformacao.taskmanager.model.http.TaskService;
 import br.com.cast.turmaformacao.taskmanager.model.services.LabelBusinessService;
 import br.com.cast.turmaformacao.taskmanager.model.services.TaskBusinessService;
 
@@ -52,6 +54,7 @@ public class TaskFormActivity extends AppCompatActivity {
         bindEditTextDescription();
         bindButtonAddLabel();
         bindSpinnerLabels();
+
     }
 
     protected  void onResume(){
@@ -126,13 +129,15 @@ public class TaskFormActivity extends AppCompatActivity {
 
     private void onMenuSaveClick() {
             String required = TaskFormActivity.this.getString(R.string.lbl_required);
-            if (!FormHelper.validateRequired(required, editTextName, editTextDescription)) {
                 binTask();
                 TaskBusinessService.save(task);
                 Toast.makeText(TaskFormActivity.this, R.string.lbl_saved, Toast.LENGTH_SHORT).show();
                 TaskFormActivity.this.finish();
-            }
         }
+
+
+
+
 
 
     private void binTask(){
@@ -150,6 +155,7 @@ public class TaskFormActivity extends AppCompatActivity {
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextName.setText(task.getName() == null ? "" : task.getName());
     }
+
 
 
 

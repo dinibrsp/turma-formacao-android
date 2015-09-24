@@ -56,6 +56,23 @@ public final class TaskReposiroty {
         databaseHelper.close();
     }
 
+    public static Task checkTask(Task task){
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = TaskContract._ID + " = ?";
+        String[] params = {task.get_id()};
+
+        Cursor cursor = db.query(TaskContract.TABLE, TaskContract.COLUNS, where, params, null, null, TaskContract.ID);
+
+        task = TaskContract.getTask(cursor);
+
+        db.close();
+        databaseHelper.close();
+
+        return task;
+    }
+
 
 
 

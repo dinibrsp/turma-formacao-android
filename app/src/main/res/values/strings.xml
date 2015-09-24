@@ -23,6 +23,7 @@
 
     <string name="button_editLabel">Edit Label</string>
     <string name="lbl_add">Add</string>
+    <string name="lbl_update">Update</string>
 
     <string name="lbl_required">Field required!</string>
     <string name="lbl_saved">Saved!</string>

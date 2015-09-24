@@ -22,6 +22,7 @@
     <string name="lbl_description">Descrição</string>
     <string name="lbl_save">Salvar</string>
     <string name="button_editLabel">Editar Label</string>
+    <string name="lbl_update">Atualizar</string>
 
     <string name="lbl_add">Adicionar</string>
 
