@@ -56,7 +56,7 @@ public class TaskListAdapter extends BaseAdapter {
         TextView textViewName = (TextView)taskListItemView.findViewById(R.id.textViewName);
         textViewName.setText(task.getName());
 
-       if (task.getLabel().getColor() != null) {
+       /*if (task.getLabel().getColor() != null) {
             TextView textViewColor = (TextView) taskListItemView.findViewById(R.id.textColor);
             textViewColor.setText(task.getLabel().getName());
 
@@ -64,7 +64,14 @@ public class TaskListAdapter extends BaseAdapter {
 
             int hexColor = android.graphics.Color.parseColor(task.getLabel().getColor().getHex());
             textColor.getBackground().setColorFilter(hexColor, PorterDuff.Mode.SRC);
-        }
+        }*/
+        View textColor = taskListItemView.findViewById(R.id.textViewId);
+
+        String color = task.getLabel() == null ? "#ffffff" : task.getLabel().getColor().getHex();
+
+        int hexColor = android.graphics.Color.parseColor(color);
+
+        textColor.getBackground().setColorFilter(hexColor, PorterDuff.Mode.SRC);
 
         return taskListItemView;
     }

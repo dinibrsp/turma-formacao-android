@@ -1,6 +1,7 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -75,13 +76,7 @@ public class TaskListActivity extends AppCompatActivity {
                 onMenuAddClick();
                 break;
             case R.id.menu_update:
-                try {
                     onMenuUpdateClick();
-                } catch (ExecutionException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 break;
         }
         return super.onOptionsItemSelected(item);
@@ -117,31 +112,38 @@ public class TaskListActivity extends AppCompatActivity {
         startActivity(goToTaskForm);
     }
 
-    private class getTasks extends AsyncTask<String, Void, List<Task>> {
+    private class getTasks extends AsyncTask<Void, Void, Void> {
 
+        ProgressDialog progressDialog;
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progressDialog = new ProgressDialog(TaskListActivity.this);
+            progressDialog.setMessage("Carregando");
+            progressDialog.show();
+
         }
 
         @Override
-        protected List<Task> doInBackground(String... params) {
-            return TaskService.getTasks();
+        protected Void doInBackground(Void... params) {
+            TaskBusinessService.synchronize();
+            return null;
         }
 
         @Override
-        protected void onPostExecute(List<Task> tasks) {
-            super.onPostExecute(tasks);
-           for(Task t:tasks){
-            TaskBusinessService.save(t);
-            }
+        protected void onPostExecute(Void avoid) {
+            super.onPostExecute(avoid);
+            progressDialog.dismiss();
+            updateTaskList();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
         }
     }
-    private void onMenuUpdateClick() throws ExecutionException, InterruptedException {
-        AsyncTask<String, Void, List<Task>> execute = new getTasks().execute();
-        int lengthExecute = execute.get().size();
-        for (int i = 0; i < lengthExecute; i++)
-                TaskBusinessService.synchronize(execute.get().get(i));
+    private void onMenuUpdateClick(){
+        new getTasks().execute();
         updateTaskList();
     }
 

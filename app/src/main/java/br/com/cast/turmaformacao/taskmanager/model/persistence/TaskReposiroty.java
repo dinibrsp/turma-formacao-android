@@ -73,6 +73,21 @@ public final class TaskReposiroty {
         return task;
     }
 
+    public static Long getIdByWebId(String webId) {
+
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance();
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+
+        String where = TaskContract._ID + " = ? ";
+        String params[] = {String.valueOf(webId)};
+
+        Cursor cursor = db.query(TaskContract.TABLE,TaskContract.COLUNS,where,params,null,null,null);
+
+        Task task = TaskContract.getTask(cursor);
+
+        return task == null ? null : task.getId();
+    }
+
 
 
 

@@ -1,33 +1,23 @@
 package br.com.cast.turmaformacao.taskmanager.controllers.activities;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.util.List;
-
 import br.com.cast.turmaformacao.taskmanager.R;
-import br.com.cast.turmaformacao.taskmanager.Util.FormHelper;
 import br.com.cast.turmaformacao.taskmanager.model.entities.Account;
-import br.com.cast.turmaformacao.taskmanager.model.entities.Address;
-import br.com.cast.turmaformacao.taskmanager.model.entities.Label;
-import br.com.cast.turmaformacao.taskmanager.model.http.AddressService;
-import br.com.cast.turmaformacao.taskmanager.model.http.AddressService;
 import br.com.cast.turmaformacao.taskmanager.model.persistence.AccountReposiroty;
-import br.com.cast.turmaformacao.taskmanager.model.services.LabelBusinessService;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText editTextLogin;
     private EditText editTextPassword;
+    private Button buttonLogin;
     private Button buttonCreate;
     private Account account;
 
@@ -37,30 +27,10 @@ public class LoginActivity extends AppCompatActivity {
 
         bindEditTextLogin();
         bindEditTextPassword();
+        bindButtonLogin();
         bindButtonCreate();
 
     }
-
-    /*private class GetAddressTask extends AsyncTask<String, Void, Address>{
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected Address doInBackground(String... params) {
-            return AddressService.getAddressByCep(params[0]);
-        }
-
-        @Override
-        protected void onPostExecute(Address address) {
-
-            super.onPostExecute(address);
-        }
-    }*/
-
-
     private void bindButtonCreate() {
         buttonCreate = (Button) findViewById(R.id.buttonCreate);
         buttonCreate.setOnClickListener(new View.OnClickListener() {
@@ -72,6 +42,25 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+
+
+    private void bindButtonLogin() {
+        buttonLogin = (Button) findViewById(R.id.buttonLogin);
+        buttonLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //String message = getResources().getString(R.string.msg_welcome,editTextLogin.getText());
+                //Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
+                if(checkLogin()) {
+                    Intent redirectToTaskListActivity = new Intent(LoginActivity.this, TaskListActivity.class);
+                    startActivity(redirectToTaskListActivity);
+                    finish();
+                }
+                else
+                    Toast.makeText(LoginActivity.this, "Nao", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 
     public boolean checkLogin(){
         Account checkAccount = new Account();
@@ -86,37 +75,6 @@ public class LoginActivity extends AppCompatActivity {
         else
             return false;
     }
-
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_login, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_login:
-                onMenuLoginClick();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    private void onMenuLoginClick() {
-        binLogin();
-    }
-
-    private void binLogin() {
-        String failmsg = getResources().getString(R.string.failmsg);
-        if(checkLogin()) {
-            Intent redirectToTaskListActivity = new Intent(LoginActivity.this, TaskListActivity.class);
-            startActivity(redirectToTaskListActivity);
-            finish();
-        }
-        else
-            Toast.makeText(LoginActivity.this, failmsg, Toast.LENGTH_LONG).show();
-    }
-
 
     private void bindEditTextPassword() {
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
